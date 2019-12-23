@@ -10,9 +10,16 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.In;
+import frc.robot.commands.Shoot;
 public class OI {
-  Joystick stick = new Joystick(0);
-  Button b1 = new JoystickButton(stick,1);
+  public Joystick stick = new Joystick(0);
+  Button b7 = new JoystickButton(stick,7);
+  Button b8 = new JoystickButton(stick,8);
+  public OI(){
+    b7.whileHeld(new In());
+    b8.whileHeld(new Shoot());
+  }
 
   //// TRIGGERING COMMANDS WITH BUTTONS
   // Once you have a button, it's trivial to bind it to a button in one of

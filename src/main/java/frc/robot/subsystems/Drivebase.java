@@ -9,6 +9,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
+import frc.robot.commands.DriveByStick;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -23,47 +25,17 @@ public class Drivebase extends Subsystem {
     rightSlave.follow(rightMotor);
     rightMotor.setInverted(true);
   }
-  public void straight(double speed,int time){
-    leftMotor.set(speed);rightMotor.set(speed);
-    try{Thread.sleep(time);}catch(InterruptedException e){}
-    leftMotor.set(0);rightMotor.set(0);
-  }
-  public void set(double speed){
+  public void straight(double speed){
     leftMotor.set(speed);rightMotor.set(speed);
   }
-  /** 
-  Tham số âm -> quay trái; tham số dương -> quay phải
-  */
-  public void turn(double grad){
-    double speed=0.004*grad;
+  public void turn(double speed){
     leftMotor.set(speed);rightMotor.set(-speed);
-    try{Thread.sleep(500);}catch(InterruptedException e){}
-    leftMotor.set(0);rightMotor.set(0);
-    try{Thread.sleep(500);}catch(InterruptedException e){}
+  }
+  public void stop(){
+    straight(0);
   }
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new DriveByStick());
   }
 }
-
-
-// Test trên robot đội đỏ
-
-// import edu.wpi.first.wpilibj.VictorSP;
-// public class ExampleSubsystem extends Subsystem {
-//   public VictorSP leftMotor = new VictorSP(RobotMap.LEFT_PORT);
-//   public VictorSP leftSlave = new VictorSP(RobotMap.LEFT_SLAVE_PORT);
-//   public VictorSP rightMotor = new VictorSP(RobotMap.RIGHT_PORT);
-//   public VictorSP rightSlave = new VictorSP(RobotMap.RIGHT_SLAVE_PORT);
-//   public VictorSP intake = new VictorSP(RobotMap.INTAKE_PORT);
-
-//   public void straight(double speed,int time){
-//     leftMotor.set(speed);leftSlave.set(speed);
-//     rightMotor.set(speed*0.8);rightSlave.set(speed*0.8);
-//     try{Thread.sleep(time*1000);}catch(InterruptedException e){}
-//     leftMotor.set(0);leftSlave.set(0);
-//     rightMotor.set(0);rightSlave.set(0);
-//   }
-// }

@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.Auto;
+import frc.robot.subsystems.Cannon;
 import frc.robot.subsystems.Drivebase;
-import frc.robot.subsystems.Utils;
+import frc.robot.subsystems.Intake;;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,11 +24,12 @@ import frc.robot.subsystems.Utils;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static Drivebase m_drive = new Drivebase();
-  public static Utils m_util = new Utils();
-  public static OI m_oi;
+  public static Drivebase drive = new Drivebase();
+  public static Intake intake = new Intake();
+  public static Cannon cannon = new Cannon();
+  public static OI oi;
 
-  Command m_autonomousCommand;
+  Command autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
@@ -37,10 +38,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    oi = new OI();
+    autonomousCommand = new Auto();
+    // m_chooser.setDefaultOption("Default Auto", new Auto());
     // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+    // SmartDashboard.putData("Auto mode", m_chooser);
   }
 
   /**
@@ -82,10 +84,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
-    m_drive.straight(0.3,3000);
-    m_drive.turn(100);
-    m_drive.straight(0.3, 1000);
+    autonomousCommand = m_chooser.getSelected();
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -94,8 +93,8 @@ public class Robot extends TimedRobot {
      */
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
+    if (autonomousCommand != null) {
+      autonomousCommand.start();
     }
   }
 
@@ -106,17 +105,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    if (autonomousCommand != null) {
+      autonomousCommand.cancel();
     }
   }
 
   @Override
   public void teleopPeriodic() {
-    m_drive.mDrive.tankDrive(-m_oi.stick.getRawAxis(1)*0.6,m_oi.stick.getRawAxis(5)*0.6);
-    m_util.control(m_util.intake,1,m_oi.stick.getRawButton(5),m_oi.stick.getRawButton(7));
-    m_util.control(m_util.shoot,1,m_oi.stick.getRawButton(8));
-    m_util.control(m_util.load,0.5,m_oi.stick.getRawButton(6));
     Scheduler.getInstance().run();
   }
 
