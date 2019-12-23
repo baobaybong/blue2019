@@ -28,6 +28,9 @@ public class Drivebase extends Subsystem {
     try{Thread.sleep(time);}catch(InterruptedException e){}
     leftMotor.set(0);rightMotor.set(0);
   }
+  public void set(double speed){
+    leftMotor.set(speed);rightMotor.set(speed);
+  }
   /** 
   Tham số âm -> quay trái; tham số dương -> quay phải
   */
