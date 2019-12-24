@@ -20,12 +20,12 @@ public class Straight extends Command {
 
   @Override
   protected void initialize() {
-    Robot.drive.straight(speed);
     setTimeout(time);
   }
 
   @Override
   protected void execute() {
+    Robot.drive.straight(speed);
   }
 
   @Override

@@ -11,9 +11,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class Auto extends CommandGroup {
   public Auto() {
-    addParallel(new In(5));
-    addSequential(new Straight(0.3,3));
-    addSequential(new Turn(0.4));
-    addSequential(new Straight(0.5,2));
+    addSequential(new Straight(0.3,5));
+    // addSequential(new Turn(2));
+    // addSequential(new Straight(0.5,2));
   }
 }

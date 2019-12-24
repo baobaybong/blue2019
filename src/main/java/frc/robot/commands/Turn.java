@@ -11,20 +11,18 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class Turn extends Command {
-  double speed;
-  public Turn(double speed) {
-    this.speed=speed;
+  public Turn(double time) {
     requires(Robot.drive);
+    setTimeout(time);
   }
 
   @Override
   protected void initialize() {
-    Robot.drive.turn(speed);
-    setTimeout(0.5);
   }
 
   @Override
   protected void execute() {
+    Robot.drive.turn();
   }
 
   @Override

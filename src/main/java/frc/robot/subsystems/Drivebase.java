@@ -8,9 +8,11 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.Const;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveByStick;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -24,18 +26,22 @@ public class Drivebase extends Subsystem {
     leftSlave.follow(leftMotor);
     rightSlave.follow(rightMotor);
     rightMotor.setInverted(true);
+    rightSlave.setInverted(true);
+    leftMotor.setNeutralMode(NeutralMode.Brake);
+    leftSlave.setNeutralMode(NeutralMode.Brake);
+    rightMotor.setNeutralMode(NeutralMode.Brake);
+    rightSlave.setNeutralMode(NeutralMode.Brake);
   }
   public void straight(double speed){
-    leftMotor.set(speed);rightMotor.set(speed);
+    leftMotor.set(speed);rightMotor.set(speed * Const.autoSP);
   }
-  public void turn(double speed){
-    leftMotor.set(speed);rightMotor.set(-speed);
+  public void turn(){
+    leftMotor.set(0.3);rightMotor.set(-0.3);
   }
   public void stop(){
     straight(0);
   }
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new DriveByStick());
   }
 }

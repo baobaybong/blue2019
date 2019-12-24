@@ -23,7 +23,7 @@ public class Cannon extends Subsystem {
   public void shoot(){
     shoot.set(1);
     try{Thread.sleep(500);}catch(InterruptedException e){}
-    load.set(0.5);
+    load.set(0.6);
   }
   public void stop(){
     shoot.set(0);

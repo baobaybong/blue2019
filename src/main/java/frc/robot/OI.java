@@ -14,11 +14,11 @@ import frc.robot.commands.In;
 import frc.robot.commands.Shoot;
 public class OI {
   public Joystick stick = new Joystick(0);
-  Button b7 = new JoystickButton(stick,7);
-  Button b8 = new JoystickButton(stick,8);
+  Button b5 = new JoystickButton(stick,5);
+  Button b6 = new JoystickButton(stick,6);
   public OI(){
-    b7.whileHeld(new In());
-    b8.whileHeld(new Shoot());
+    b5.whileHeld(new In());
+    b6.whileHeld(new Shoot());
   }
 
   //// TRIGGERING COMMANDS WITH BUTTONS

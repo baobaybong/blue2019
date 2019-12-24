@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.commands.Auto;
+import frc.robot.commands.DriveByStick;
 import frc.robot.subsystems.Cannon;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Intake;;
@@ -28,8 +29,9 @@ public class Robot extends TimedRobot {
   public static Intake intake = new Intake();
   public static Cannon cannon = new Cannon();
   public static OI oi;
+  public static Command autonomousCommand;
+  public static Command tele;
 
-  Command autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
@@ -40,6 +42,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     oi = new OI();
     autonomousCommand = new Auto();
+    tele = new DriveByStick();
     // m_chooser.setDefaultOption("Default Auto", new Auto());
     // chooser.addOption("My Auto", new MyAutoCommand());
     // SmartDashboard.putData("Auto mode", m_chooser);
@@ -84,7 +87,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    autonomousCommand = m_chooser.getSelected();
+    // autonomousCommand = m_chooser.getSelected();
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -96,6 +99,8 @@ public class Robot extends TimedRobot {
     if (autonomousCommand != null) {
       autonomousCommand.start();
     }
+    tele.cancel();
+
   }
 
   @Override
@@ -112,6 +117,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    tele.start();
     Scheduler.getInstance().run();
   }
 
