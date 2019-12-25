@@ -9,34 +9,35 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.PWMTalonSRX;
-import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+// import edu.wpi.first.wpilibj.Spark;
+// import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Const;
 import frc.robot.RobotMap;
 
-public class Cannon extends Subsystem {
-  public Spark shoot1 = new Spark(RobotMap.SHOOT1_PORT);
-  public Spark shoot2 = new Spark(RobotMap.SHOOT2_PORT);
-  public SpeedControllerGroup shoot = new SpeedControllerGroup(shoot1,shoot2);
-  public Spark load = new Spark(RobotMap.LOAD);
-  // public PWMTalonSRX shuffle = new PWMTalonSRX(RobotMap.SHUFFLE_PORT);
-  public Cannon(){
-    shoot2.setInverted(true);
-    load.setInverted(true);
+public class Shuffle extends Subsystem {
+  // public Spark shoot1 = new Spark(RobotMap.SHOOT1_PORT);
+  // public Spark shoot2 = new Spark(RobotMap.SHOOT2_PORT);
+  // public SpeedControllerGroup shoot = new SpeedControllerGroup(shoot1,shoot2);
+  // public Spark load = new Spark(RobotMap.LOAD);
+  public WPI_TalonSRX shuffle = new WPI_TalonSRX(RobotMap.SHUFFLE_PORT);
+  // public Cannon(){
+  //   shoot2.setInverted(true);
+  //   load.setInverted(true);
+  // }
+  public Shuffle(){
   }
-  public void shoot(){
-    shoot.set(1);
-    try{Thread.sleep(1000);}catch(InterruptedException e){}
-    load.set(0.6);
+  // public void shoot(){
+  //   shoot.set(1);
+  //   try{Thread.sleep(500);}catch(InterruptedException e){}
+  //   load.set(0.6);
+  // }
+  public void shuffle(){
+    shuffle.set(Const.shuffleSP);
   }
   public void stop(){
-    shoot.set(0);
-    load.set(0);
+     shuffle.set(0);
   }
-  // public void shuffleInit(){
-  //   shuffle.set(Const.shuffleSP);
-  // }
   @Override
   public void initDefaultCommand() {
   }

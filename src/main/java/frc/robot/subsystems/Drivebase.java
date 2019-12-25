@@ -43,5 +43,6 @@ public class Drivebase extends Subsystem {
   }
   @Override
   public void initDefaultCommand() {
+    setDefaultCommand(new DriveByStick());
   }
 }

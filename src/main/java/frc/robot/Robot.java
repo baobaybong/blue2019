@@ -15,7 +15,8 @@ import frc.robot.commands.Auto;
 import frc.robot.commands.DriveByStick;
 import frc.robot.subsystems.Cannon;
 import frc.robot.subsystems.Drivebase;
-import frc.robot.subsystems.Intake;;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shuffle;;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,6 +29,7 @@ public class Robot extends TimedRobot {
   public static Drivebase drive = new Drivebase();
   public static Intake intake = new Intake();
   public static Cannon cannon = new Cannon();
+  public static Shuffle shuffle = new Shuffle();
   public static OI oi;
   public static Command autonomousCommand;
   public static Command tele;
@@ -99,7 +101,7 @@ public class Robot extends TimedRobot {
     if (autonomousCommand != null) {
       autonomousCommand.start();
     }
-    tele.cancel();
+    // tele.cancel();
 
   }
 
@@ -117,7 +119,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    tele.start();
+    // tele.start();
+    // if (oi.stick.getRawButton(4)) cannon.shuffle.set(1);
+    // else cannon.shuffle.set(0);
     Scheduler.getInstance().run();
   }
 
