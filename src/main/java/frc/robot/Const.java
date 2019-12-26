@@ -6,5 +6,5 @@ public class Const {
         teleSP = 0.6,
         autoSP = 0.8,
         intakeSP = 0.7,
-        shuffleSP = 0.6;
+        shuffleSP = 1;
 }
