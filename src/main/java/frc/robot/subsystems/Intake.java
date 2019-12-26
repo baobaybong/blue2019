@@ -9,13 +9,12 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Const;
 import frc.robot.RobotMap;
 
 public class Intake extends Subsystem {
   public VictorSP intake = new VictorSP(RobotMap.INTAKE_PORT);
-  public void intake(){
-    intake.set(Const.intakeSP);
+  public void intake(double speed){
+    intake.set(speed);
   }
   public void stop(){
     intake.set(0);

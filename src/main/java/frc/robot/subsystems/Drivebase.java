@@ -35,8 +35,8 @@ public class Drivebase extends Subsystem {
   public void straight(double speed){
     leftMotor.set(speed);rightMotor.set(speed * Const.autoSP);
   }
-  public void turn(){
-    leftMotor.set(0.3);rightMotor.set(-0.3);
+  public void turn(double speed){
+    leftMotor.set(speed);rightMotor.set(-speed);
   }
   public void stop(){
     straight(0);

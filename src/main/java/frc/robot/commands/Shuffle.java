@@ -23,11 +23,11 @@ public class Shuffle extends Command {
 
   @Override
   protected void initialize() {
-    Robot.shuffle.shuffle();
   }
 
   @Override
   protected void execute() {
+    Robot.shuffle.shuffle();
   }
 
   @Override

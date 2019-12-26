@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Const;
 import frc.robot.Robot;
 
 public class In extends Command {
@@ -23,11 +24,13 @@ public class In extends Command {
 
   @Override
   protected void initialize() {
-    Robot.intake.intake();
   }
 
+  double speed=0.2,dif=Const.intakeSP-speed;
   @Override
   protected void execute() {
+    Robot.intake.intake(speed);
+    speed=Math.min(speed+dif/50,Const.intakeSP);
   }
 
   @Override

@@ -12,11 +12,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.commands.Auto;
-import frc.robot.commands.DriveByStick;
 import frc.robot.subsystems.Cannon;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Shuffle;;
+import frc.robot.subsystems.Shuffle;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,8 +31,6 @@ public class Robot extends TimedRobot {
   public static Shuffle shuffle = new Shuffle();
   public static OI oi;
   public static Command autonomousCommand;
-  public static Command tele;
-
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
@@ -44,7 +41,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     oi = new OI();
     autonomousCommand = new Auto();
-    tele = new DriveByStick();
     // m_chooser.setDefaultOption("Default Auto", new Auto());
     // chooser.addOption("My Auto", new MyAutoCommand());
     // SmartDashboard.putData("Auto mode", m_chooser);
@@ -119,9 +115,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    // tele.start();
-    // if (oi.stick.getRawButton(4)) cannon.shuffle.set(1);
-    // else cannon.shuffle.set(0);
     Scheduler.getInstance().run();
   }
 

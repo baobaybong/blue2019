@@ -8,13 +8,15 @@
 package frc.robot;
 
 public class RobotMap {
-  public static int LEFT_PORT = 1, 
-                    LEFT_SLAVE_PORT = 2, 
-                    RIGHT_PORT = 3, 
-                    RIGHT_SLAVE_PORT = 4,
-                    SHUFFLE_PORT = 5,
-                    INTAKE_PORT = 0,
-                    SHOOT1_PORT = 1,
-                    SHOOT2_PORT = 2,
-                    LOAD = 3;
+  public static int /*CAN*/
+  LEFT_PORT = 1, 
+  LEFT_SLAVE_PORT = 2, 
+  RIGHT_PORT = 3, 
+  RIGHT_SLAVE_PORT = 4,
+  SHUFFLE_PORT = 5;
+  public static int /*PWM*/
+  INTAKE_PORT = 0,
+  SHOOT1_PORT = 1,
+  SHOOT2_PORT = 2,
+  LOAD_PORT = 3;
 }

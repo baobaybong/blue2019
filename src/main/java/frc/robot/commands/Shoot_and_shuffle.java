@@ -10,9 +10,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class Shoot_and_shuffle extends CommandGroup {
-  /**
-   * Add your docs here.
-   */
   public Shoot_and_shuffle() {
     addParallel(new Shoot());
     addParallel(new Shuffle());

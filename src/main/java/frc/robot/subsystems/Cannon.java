@@ -6,21 +6,16 @@
 /*----------------------------------------------------------------------------*/
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import edu.wpi.first.wpilibj.PWMTalonSRX;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Const;
 import frc.robot.RobotMap;
 
 public class Cannon extends Subsystem {
   public Spark shoot1 = new Spark(RobotMap.SHOOT1_PORT);
   public Spark shoot2 = new Spark(RobotMap.SHOOT2_PORT);
   public SpeedControllerGroup shoot = new SpeedControllerGroup(shoot1,shoot2);
-  public Spark load = new Spark(RobotMap.LOAD);
-  // public PWMTalonSRX shuffle = new PWMTalonSRX(RobotMap.SHUFFLE_PORT);
+  public Spark load = new Spark(RobotMap.LOAD_PORT);
   public Cannon(){
     shoot2.setInverted(true);
     load.setInverted(true);
@@ -34,9 +29,6 @@ public class Cannon extends Subsystem {
     shoot.set(0);
     load.set(0);
   }
-  // public void shuffleInit(){
-  //   shuffle.set(Const.shuffleSP);
-  // }
   @Override
   public void initDefaultCommand() {
   }

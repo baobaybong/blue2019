@@ -19,6 +19,7 @@ public class DriveByStick extends Command {
   @Override
   protected void initialize() {
   }
+  
   double offset;
   @Override
   protected void execute() {
