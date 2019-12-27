@@ -8,6 +8,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -23,6 +24,7 @@ public class Cannon extends Subsystem {
   public void shoot(){
     shoot.set(1);
     try{Thread.sleep(1000);}catch(InterruptedException e){}
+    Timer.delay(1);
     load.set(0.6);
   }
   public void stop(){
