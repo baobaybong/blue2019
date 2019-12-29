@@ -12,6 +12,11 @@ import frc.robot.Robot;
 
 public class Straight extends Command {
   double speed;
+  public Straight(double speed){
+    this.speed=speed;
+    requires(Robot.drive);
+    setTimeout(1000000);
+  }
   public Straight(double speed,double time) {
     this.speed=speed;
     requires(Robot.drive);

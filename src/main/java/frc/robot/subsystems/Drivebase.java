@@ -27,10 +27,6 @@ public class Drivebase extends Subsystem {
     rightSlave.follow(rightMotor);
     rightMotor.setInverted(true);
     rightSlave.setInverted(true);
-    leftMotor.setNeutralMode(NeutralMode.Brake);
-    leftSlave.setNeutralMode(NeutralMode.Brake);
-    rightMotor.setNeutralMode(NeutralMode.Brake);
-    rightSlave.setNeutralMode(NeutralMode.Brake);
   }
   public void straight(double speed){
     leftMotor.set(speed);rightMotor.set(speed * Const.autoSP);
@@ -41,8 +37,14 @@ public class Drivebase extends Subsystem {
   public void stop(){
     straight(0);
   }
+  public void setNeutralMode(NeutralMode neutralMode){
+    leftSlave.setNeutralMode(neutralMode);
+    leftMotor.setNeutralMode(neutralMode);
+    rightMotor.setNeutralMode(neutralMode);
+    rightSlave.setNeutralMode(neutralMode);
+  }
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new DriveByStick());
+    // setDefaultCommand(new DriveByStick());
   }
 }

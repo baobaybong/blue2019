@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -65,6 +67,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    drive.setNeutralMode(NeutralMode.Coast);
   }
 
   @Override
@@ -97,7 +100,7 @@ public class Robot extends TimedRobot {
     if (autonomousCommand != null) {
       autonomousCommand.start();
     }
-    // tele.cancel();
+    drive.setNeutralMode(NeutralMode.Brake);
 
   }
 
@@ -111,6 +114,7 @@ public class Robot extends TimedRobot {
     if (autonomousCommand != null) {
       autonomousCommand.cancel();
     }
+    drive.setNeutralMode(NeutralMode.Brake);
   }
 
   @Override

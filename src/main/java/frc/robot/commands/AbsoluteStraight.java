@@ -9,9 +9,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class Shoot_and_shuffle extends CommandGroup {
-  public Shoot_and_shuffle() {
-    addParallel(new Shuffle());
-    addParallel(new Shoot());
+public class AbsoluteStraight extends CommandGroup {
+  /**
+   * Add your docs here.
+   */
+  public AbsoluteStraight(double speed) {
+    addSequential(new Turn(0.2,0.2));
+    addSequential(new Straight(speed));
   }
 }

@@ -10,20 +10,19 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.AbsoluteStraight;
 import frc.robot.commands.In;
-import frc.robot.commands.Shoot;
-import frc.robot.commands.Shuffle;
+import frc.robot.commands.Straight;
 import frc.robot.commands.Shoot_and_shuffle;
 public class OI {
   public Joystick stick = new Joystick(0);
   Button b5 = new JoystickButton(stick,5);
   Button b6 = new JoystickButton(stick,6);
-  Button b4 = new JoystickButton(stick, 4);
+  Button b4 = new JoystickButton(stick,4);
   
   public OI(){
     b5.whileHeld(new In());
-  //  b6.whileHeld(new Shoot());
-  //  b6.whileHeld(new Shuffle());
-    b6.toggleWhenPressed(new Shoot_and_shuffle());
+    b6.whileHeld(new Shoot_and_shuffle());
+    b4.whileHeld(new AbsoluteStraight(0.5));
   }
 }

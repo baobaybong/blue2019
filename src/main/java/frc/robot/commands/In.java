@@ -26,11 +26,11 @@ public class In extends Command {
   protected void initialize() {
   }
 
-  double speed=0.2,dif=Const.intakeSP-speed;
+  double speed=0.2,dif=(Const.intakeSP-speed)/50/2;
   @Override
   protected void execute() {
     Robot.intake.intake(speed);
-    speed=Math.min(speed+dif/50,Const.intakeSP);
+    speed=Math.min(speed+dif,Const.intakeSP);
   }
 
   @Override
@@ -40,6 +40,7 @@ public class In extends Command {
 
   @Override
   protected void end() {
+    speed=0.2;
     Robot.intake.stop();
   }
 
