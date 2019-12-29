@@ -13,12 +13,6 @@ import frc.robot.Robot;
 public class Shuffle extends Command {
   public Shuffle() {
     requires(Robot.shuffle);
-    setTimeout(1000000);
-  }
-
-  public Shuffle(double time) {
-    requires(Robot.shuffle);
-    setTimeout(time);
   }
 
   @Override
@@ -32,7 +26,7 @@ public class Shuffle extends Command {
 
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return false;
   }
 
   @Override

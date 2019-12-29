@@ -10,7 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.AbsoluteStraight;
 import frc.robot.commands.In;
 import frc.robot.commands.Shoot_and_shuffle;
 public class OI {
@@ -22,6 +21,5 @@ public class OI {
   public OI(){
     b5.whileHeld(new In());
     b6.whileHeld(new Shoot_and_shuffle());
-    // b4.whileHeld(new AbsoluteStraight(0.5,0.5));
   }
 }

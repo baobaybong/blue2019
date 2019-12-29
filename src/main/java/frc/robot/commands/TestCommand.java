@@ -8,14 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
-public class AbsoluteStraight extends CommandGroup {
+public class TestCommand extends CommandGroup {
   /**
-   * Add your docs here.
+   * Testing
    */
-  public AbsoluteStraight(double left,double right) {
-    addParallel(new Straight(left,right),5);
-    
+  public TestCommand(double speed) {
+    addParallel(new Straight(speed),5); 
   }
 }

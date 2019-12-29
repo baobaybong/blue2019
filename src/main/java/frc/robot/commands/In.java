@@ -14,12 +14,6 @@ import frc.robot.Robot;
 public class In extends Command {
   public In() {
     requires(Robot.intake);
-    setTimeout(1000000);
-  }
-
-  public In(double time) {
-    requires(Robot.intake);
-    setTimeout(time);
   }
 
   @Override
@@ -35,7 +29,7 @@ public class In extends Command {
 
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return false;
   }
 
   @Override

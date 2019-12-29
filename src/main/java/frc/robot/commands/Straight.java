@@ -11,39 +11,31 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class Straight extends Command {
-  double left,right;
-  public Straight(double left,double right){
-    this.left=left;
-    this.right=right;
+  double speed,targetAngle,difAngle,threshold=3;
+  public Straight(double speed){
+    this.speed=speed;
     requires(Robot.drive);
-    setTimeout(1000000);
   }
-  // public Straight(double speed,double time) {
-  //   this.speed=speed;
-  //   requires(Robot.drive);
-  //   setTimeout(time);
-  // }
 
   @Override
   protected void initialize() {
+    targetAngle=Robot.drive.ahrs.getAngle();
   }
 
   @Override
   protected void execute() {
-    if(Robot.x > 5){
-      Robot.drive.straight(left,right+0.2);
-    }
-    else if(Robot.x <-5){
-      Robot.drive.straight(left+0.2,right);
-    }
-    else{
-      Robot.drive.straight(left,right);
-    }
+    difAngle=Robot.drive.ahrs.getAngle()-targetAngle;
+    if(difAngle>threshold){
+      Robot.drive.straight(speed,speed+0.2);
+    }else if(difAngle<-threshold){
+      Robot.drive.straight(speed+0.2,speed);
+    }else
+      Robot.drive.straight(speed,speed);
   }
 
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return false;
   }
 
   @Override

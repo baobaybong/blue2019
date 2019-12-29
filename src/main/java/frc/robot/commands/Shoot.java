@@ -13,12 +13,6 @@ import frc.robot.Robot;
 public class Shoot extends Command {
   public Shoot() {
     requires(Robot.cannon);
-    setTimeout(1000000);
-  }
-
-  public Shoot(double time){
-    requires(Robot.cannon);
-    setTimeout(time);
   }
   // Called just before this Command runs the first time
   @Override
@@ -34,7 +28,7 @@ public class Shoot extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return false;
   }
 
   // Called once after isFinished returns true

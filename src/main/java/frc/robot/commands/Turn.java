@@ -11,15 +11,16 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class Turn extends Command {
-  double speed;
-  public Turn(double speed,double time) {
-    this.speed=speed;
+  double deg,speed,targetAngle;
+  public Turn(double deg) {
+    this.deg=deg;
     requires(Robot.drive);
-    setTimeout(time);
   }
 
   @Override
   protected void initialize() {
+    speed = deg > 0 ? 0.3:-0.3;
+    targetAngle = Robot.drive.ahrs.getAngle() + deg;
   }
 
   @Override
@@ -29,7 +30,8 @@ public class Turn extends Command {
 
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    if(speed>0)return Robot.drive.ahrs.getAngle()>=targetAngle;
+    else return Robot.drive.ahrs.getAngle()<=targetAngle;
   }
 
   @Override

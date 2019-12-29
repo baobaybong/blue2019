@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Const;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveByStick;
-
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -47,6 +46,6 @@ public class Drivebase extends Subsystem {
   }
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new DriveByStick()); // neu auto thi cmt
+    setDefaultCommand(new DriveByStick());
   }
 }

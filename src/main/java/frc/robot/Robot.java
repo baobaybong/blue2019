@@ -45,6 +45,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     oi = new OI();
     autonomousCommand = new Auto();
+    drive.ahrs.zeroYaw();
     // m_chooser.setDefaultOption("Default Auto", new Auto());
     // chooser.addOption("My Auto", new MyAutoCommand());
     // SmartDashboard.putData("Auto mode", m_chooser);
@@ -60,7 +61,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    x = Robot.drive.ahrs.getYaw();
+    x = drive.ahrs.getYaw();
     SmartDashboard.putNumber("yaw", x);
   }
   
@@ -92,7 +93,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    Robot.drive.ahrs.zeroYaw();
+    drive.setNeutralMode(NeutralMode.Brake);
     // autonomousCommand = m_chooser.getSelected();
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -105,7 +106,6 @@ public class Robot extends TimedRobot {
     if (autonomousCommand != null) {
       autonomousCommand.start();
     }
-    drive.setNeutralMode(NeutralMode.Brake);
 
   }
 
