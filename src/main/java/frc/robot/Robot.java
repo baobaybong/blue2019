@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Auto;
 import frc.robot.subsystems.Cannon;
 import frc.robot.subsystems.Drivebase;
@@ -34,6 +35,7 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static Command autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+  public static double x=0;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -58,8 +60,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    x = Robot.drive.ahrs.getYaw();
+    SmartDashboard.putNumber("yaw", x);
   }
-
+  
   /**
    * This function is called once each time the robot enters Disabled mode.
    * You can use it to reset any subsystem information you want to clear when
@@ -88,6 +92,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    Robot.drive.ahrs.zeroYaw();
     // autonomousCommand = m_chooser.getSelected();
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",

@@ -22,7 +22,7 @@ public class Cannon extends Subsystem {
     load.setInverted(true);
   }
   public void shoot(){
-    shoot.set(1);
+    shoot.set(0.95);
     Timer.delay(1);
     load.set(0.6);
   }

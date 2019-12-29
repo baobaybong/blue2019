@@ -11,17 +11,18 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class Straight extends Command {
-  double speed;
-  public Straight(double speed){
-    this.speed=speed;
+  double left,right;
+  public Straight(double left,double right){
+    this.left=left;
+    this.right=right;
     requires(Robot.drive);
     setTimeout(1000000);
   }
-  public Straight(double speed,double time) {
-    this.speed=speed;
-    requires(Robot.drive);
-    setTimeout(time);
-  }
+  // public Straight(double speed,double time) {
+  //   this.speed=speed;
+  //   requires(Robot.drive);
+  //   setTimeout(time);
+  // }
 
   @Override
   protected void initialize() {
@@ -29,7 +30,15 @@ public class Straight extends Command {
 
   @Override
   protected void execute() {
-    Robot.drive.straight(speed);
+    if(Robot.x > 5){
+      Robot.drive.straight(left,right+0.2);
+    }
+    else if(Robot.x <-5){
+      Robot.drive.straight(left+0.2,right);
+    }
+    else{
+      Robot.drive.straight(left,right);
+    }
   }
 
   @Override

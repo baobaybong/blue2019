@@ -15,6 +15,7 @@ import frc.robot.commands.DriveByStick;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.kauailabs.navx.frc.AHRS;
 
 public class Drivebase extends Subsystem {
   public WPI_VictorSPX leftMotor = new WPI_VictorSPX(RobotMap.LEFT_PORT);
@@ -22,20 +23,21 @@ public class Drivebase extends Subsystem {
   public WPI_TalonSRX rightMotor = new WPI_TalonSRX(RobotMap.RIGHT_PORT);
   public WPI_TalonSRX rightSlave = new WPI_TalonSRX(RobotMap.RIGHT_SLAVE_PORT);
   public DifferentialDrive mDrive = new DifferentialDrive(leftMotor,rightMotor);
+  public AHRS ahrs = new AHRS();
   public Drivebase(){
     leftSlave.follow(leftMotor);
     rightSlave.follow(rightMotor);
     rightMotor.setInverted(true);
     rightSlave.setInverted(true);
   }
-  public void straight(double speed){
-    leftMotor.set(speed);rightMotor.set(speed * Const.autoSP);
+  public void straight(double left,double right){
+    leftMotor.set(left);rightMotor.set(right * Const.autoSP);
   }
   public void turn(double speed){
     leftMotor.set(speed);rightMotor.set(-speed);
   }
   public void stop(){
-    straight(0);
+    straight(0,0);
   }
   public void setNeutralMode(NeutralMode neutralMode){
     leftSlave.setNeutralMode(neutralMode);
@@ -45,6 +47,6 @@ public class Drivebase extends Subsystem {
   }
   @Override
   public void initDefaultCommand() {
-    // setDefaultCommand(new DriveByStick());
+    setDefaultCommand(new DriveByStick()); // neu auto thi cmt
   }
 }
