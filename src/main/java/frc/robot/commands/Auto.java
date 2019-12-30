@@ -8,10 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.Robot;
 
 public class Auto extends CommandGroup {
   public Auto() {
-    addSequential(new Straight(0.4),3);
-    addSequential(new Turn(90),5);
+    addSequential(new Turn(-40,0),5);
+    addSequential(new Straight(0.5),3.5);
+    addSequential(new Turn(90, 0),5);
+    addSequential(new Straight(0.5),2);
+    addSequential(new Turn(-90,90),5);
+    addSequential(new Straight(0.5),3);
   }
 }

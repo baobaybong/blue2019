@@ -94,6 +94,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     drive.setNeutralMode(NeutralMode.Brake);
+    drive.ahrs.zeroYaw();
     // autonomousCommand = m_chooser.getSelected();
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",

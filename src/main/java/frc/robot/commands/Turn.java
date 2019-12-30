@@ -12,26 +12,29 @@ import frc.robot.Robot;
 
 public class Turn extends Command {
   double deg,speed,targetAngle;
-  public Turn(double deg) {
+  final double Roffset = 35;
+  final double Loffset = -32  ;
+  public Turn(double deg, double originalAngle) {
     this.deg=deg;
+    targetAngle = originalAngle + deg;
     requires(Robot.drive);
   }
 
   @Override
   protected void initialize() {
     speed = deg > 0 ? 0.3:-0.3;
-    targetAngle = Robot.drive.ahrs.getAngle() + deg;
   }
 
   @Override
   protected void execute() {
+    
     Robot.drive.turn(speed);
   }
 
   @Override
   protected boolean isFinished() {
-    if(speed>0)return Robot.drive.ahrs.getAngle()>=targetAngle;
-    else return Robot.drive.ahrs.getAngle()<=targetAngle;
+    if(speed>0)return Robot.drive.ahrs.getAngle()>=(targetAngle - Roffset);
+    else return Robot.drive.ahrs.getAngle()<=(targetAngle - Loffset);
   }
 
   @Override
