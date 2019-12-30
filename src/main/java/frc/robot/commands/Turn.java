@@ -7,13 +7,14 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class Turn extends Command {
   double deg,speed,targetAngle;
-  final double Roffset = 35;
-  final double Loffset = -32  ;
+  final double Roffset = 28;
+  final double Loffset = -27;
   public Turn(double deg, double originalAngle) {
     this.deg=deg;
     targetAngle = originalAngle + deg;
@@ -40,6 +41,7 @@ public class Turn extends Command {
   @Override
   protected void end() {
     Robot.drive.stop();
+    Timer.delay(1);
   }
 
   @Override

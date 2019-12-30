@@ -23,10 +23,10 @@ public class DriveByStick extends Command {
   double offset;
   @Override
   protected void execute() {
-    if ((Robot.oi.stick.getRawAxis(1) == 0)||(Robot.oi.stick.getRawAxis(2)!=0)) offset = 0;
+    if ((Robot.oi.stick.getRawAxis(1) == 0)||(Robot.oi.stick.getRawAxis(4)!=0)) offset = 0;
     else offset = (Robot.oi.stick.getRawAxis(1) > 0) ? -0.22 : 0.22;
     Robot.drive.mDrive.arcadeDrive
-    (Robot.oi.stick.getRawAxis(2) * Const.teleRT + offset,
+    (Robot.oi.stick.getRawAxis(4) * Const.teleRT + offset,
     -Robot.oi.stick.getRawAxis(1) * Const.teleSP);
   // Robot.drive.mDrive.arcadeDrive(
   //   Robot.oi.stick.getRawAxis(2)*Const.teleRT, -Robot.oi.stick.getRawAxis(1)*Const.teleSP);

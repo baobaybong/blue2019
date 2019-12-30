@@ -12,11 +12,11 @@ import frc.robot.Robot;
 
 public class Auto extends CommandGroup {
   public Auto() {
-    // addSequential(new Turn(-34,0),5);
-    addSequential(new Straight(0.5),3.5);
+    addParallel(new In(),10);
+    addSequential(new Straight(0.5),3.1);
     addSequential(new Turn(90, 0),5);
-    addSequential(new Straight(0.5),2);
+    addSequential(new Straight(0.5),4.3);
     addSequential(new Turn(-90,90),5);
-    addSequential(new Straight(0.5),3);
+    addSequential(new Straight(0.6),4);
   }
 }
