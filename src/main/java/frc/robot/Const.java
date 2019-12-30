@@ -1,7 +1,7 @@
 package frc.robot;
 
 public class Const {
-    public static final double
+    public static double
         teleRT = 0.5,
         teleSP = 0.7,
         autoSP = 0.84,

@@ -7,16 +7,35 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Auto extends CommandGroup {
-  public Auto() {
-    // addSequential(new Turn(-34,0),5);
-    addSequential(new Straight(0.5),3.5);
-    addSequential(new Turn(90, 0),5);
-    addSequential(new Straight(0.5),2);
-    addSequential(new Turn(-90,90),5);
-    addSequential(new Straight(0.5),3);
+public class IntakeRev extends Command {
+  public IntakeRev() {
+    requires(Robot.intake);
+  }
+
+  @Override
+  protected void initialize() {
+  }
+
+  @Override
+  protected void execute() {
+    Robot.intake.intake(-0.3);
+  }
+
+  @Override
+  protected boolean isFinished() {
+    return false;
+  }
+
+  @Override
+  protected void end() {
+    Robot.intake.stop();
+  }
+
+  @Override
+  protected void interrupted() {
+    end();
   }
 }

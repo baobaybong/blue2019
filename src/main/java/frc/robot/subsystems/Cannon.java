@@ -26,6 +26,10 @@ public class Cannon extends Subsystem {
     Timer.delay(1);
     load.set(0.6);
   }
+  public void shootRev(){
+    shoot.set(-0.7);
+    load.set(-0.3);
+  }
   public void stop(){
     shoot.set(0);
     load.set(0);

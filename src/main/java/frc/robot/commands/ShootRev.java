@@ -8,40 +8,39 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Const;
 import frc.robot.Robot;
 
-public class DriveByStick extends Command {
-  public DriveByStick() {
-    requires(Robot.drive);
+public class ShootRev extends Command {
+  public ShootRev() {
+    requires(Robot.cannon);
   }
-
+  // Called just before this Command runs the first time
   @Override
   protected void initialize() {
   }
-  
-  double offset;
+
+  // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if ((Robot.oi.stick.getRawAxis(1) == 0)||(Robot.oi.stick.getRawAxis(2)!=0)) offset = 0;
-    else offset = (Robot.oi.stick.getRawAxis(1) > 0) ? -0.22 : 0.22;
-    Robot.drive.mDrive.arcadeDrive
-    (Robot.oi.stick.getRawAxis(2) * Const.teleRT + offset,
-    -Robot.oi.stick.getRawAxis(1) * Const.teleSP);
-  // Robot.drive.mDrive.arcadeDrive(
-  //   Robot.oi.stick.getRawAxis(2)*Const.teleRT, -Robot.oi.stick.getRawAxis(1)*Const.teleSP);
+    Robot.cannon.shootRev();
   }
 
+  // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return false;
   }
 
-  @Override 
+  // Called once after isFinished returns true
+  @Override
   protected void end() {
+    Robot.cannon.stop();
   }
 
+  // Called when another command which requires one or more of the same
+  // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

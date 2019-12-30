@@ -114,9 +114,10 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
   }
-
+  boolean wasHeld,held;
   @Override
   public void teleopInit() {
+    wasHeld = false;
     if (autonomousCommand != null) {
       autonomousCommand.cancel();
     }
@@ -125,6 +126,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    held = oi.functions.getRawButton(4);
+    if(!wasHeld && held){
+      Const.teleSP = 1.2-Const.teleSP;
+      Const.teleRT = 0.9-Const.teleRT;
+    }
+    wasHeld = held;
+    // if(oi.functions.getTrigger())
     Scheduler.getInstance().run();
   }
 
