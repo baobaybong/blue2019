@@ -13,7 +13,7 @@ import frc.robot.Robot;
 
 public class Turn extends Command {
   double deg,speed,targetAngle;
-  final double Roffset = 28;
+  final double Roffset = 31;
   final double Loffset = -27;
   public Turn(double deg, double originalAngle) {
     this.deg=deg;
